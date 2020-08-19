@@ -32,12 +32,12 @@ or
 kubectl run webapp --image=nginx --replicas=2
 ```
 
-** Create configMap**
+**Create configMap**
 ```sh
 kubectl create configmap my-config-map --from-literal=APP_COLOR=green
 ```
 
-** Create secret**
+**Create secret**
 ```sh
 kubectl create secret generic app-secret --from-literal=USERNAME=root --from-literal=PASSWORD=Test
 ```
