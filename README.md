@@ -1,7 +1,6 @@
-# Imperative commands
-
 Keeping imperative commands handy is essential for not only CKAD certification exam but also to spin up K8s resources quickly. Below are imperative commands for some of the widely used resources:
 
+## Imperative commands
 **create a namespace**
 ```sh
 kubectl create ns dev-ns
@@ -45,7 +44,7 @@ kubectl create secret generic app-secret --from-literal=USERNAME=root --from-lit
 
 
 
-# Create basic yaml descriptors with --dry-run
+## Create basic yaml descriptors with --dry-run
 
 **Create Pod descriptor yaml file for nginx with label tier=webapp**
 ```sh
