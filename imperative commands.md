@@ -9,11 +9,13 @@ Keeping imperative commands handy is essential for not only CKAD/CKA/CKS certifi
  
 **Setting up aliases are gifts when clock is ticking faster than you expect
 
-```alias k=kubectl
+```sh
+alias k=kubectl
 ```
 Bonus: export yaml generating command argumemt snippet to save few secods more
 
-```export save="--dry-run=client -o yaml"
+```sh
+export save="--dry-run=client -o yaml"
 ```
 Example:
 ***k run nginx --image=nginx $save > nginx.yaml*** will generate nginx.yaml with pod configuration
