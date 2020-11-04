@@ -37,6 +37,15 @@ k run nginx --image=nginx:alpine -l tier=webapp
 ```sh
 k run busybox --image=busybox --limits "cpu=200m,memory=512Mi" --requests "cpu=100m,memory=256Mi" --command -- sh -c "sleep 3600" -o yaml --dry-run=client
 ```
+**Update pod/container configurations**
+```sh
+k get pod busybox -o yaml > busybox.yaml
+```
+
+> Update/correct a container image, activeDeadlineSeconds or pod tolerations in running pod can be performed inline with **kubectl edit pod** command.
+```sh
+k edit pod <podname>
+```
 
 **Create a deployment**
 
