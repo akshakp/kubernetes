@@ -37,7 +37,7 @@ k run nginx --image=nginx:alpine -l tier=webapp
 ```sh
 k run busybox --image=busybox --limits "cpu=200m,memory=512Mi" --requests "cpu=100m,memory=256Mi" --command -- sh -c "sleep 3600" -o yaml --dry-run=client
 ```
-**Update pod/container configurations**
+**Update pod/container configuration/property**
 ```sh
 k get pod busybox -o yaml > busybox.yaml
 ```
@@ -57,6 +57,11 @@ k create deployment redis --image=redis --replicas=2
 ```sh
 kubectl create deployment redis --image=redis
 kubectl scale deployment/redis --replicas=2
+```
+
+> With Deployments you can easily edit any field/property of the POD template. Since the pod template is a child of the deployment specification,  with every change the deployment will automatically delete and create a new pod with the new changes. So if you want to edit a property of a POD part of a deployment you may do that simply by running the command
+```sh
+k edit deployment <deploymentname>
 ```
 
 **Create configMap**
