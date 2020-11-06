@@ -2,66 +2,76 @@ Keeping imperative commands handy is essential for not only CKAD/CKA/CKS certifi
 
 ## Before you start
 **Changes in 1.19 version:**
- - "run" commnand will only generate pod. To create all other resources, use "create" command"
+ - "run" commnand will only generate pod. To create all other resources, use "create" command
  - "--dry-run"  argument available but deprecated hence better start using "--dry-run=client"
- - "--generator" the flag doesn’t work any longer.
- - "k exec pod ls" command is available but deprecated. Better to start using "k exec pod --ls"
+ - "--generator" the flag doesn’t workubectl any longer.
+ - "kubectl exec pod ls" command is available but deprecated. Better to start using "kubectl exec pod --ls"
  
-**Setting up aliases are gifts when clock is ticking faster than you expect
+**Setting up alias is a gift when clockubectl is ticking faster than you expect**
 
 ```sh
 alias k=kubectl
 ```
-> Bonus: export yaml generating command argumemt snippet to save few secods more
+> Bonus: export yaml generating command argumemt snippet to save few more secods.
 
 ```sh
 export save="--dry-run=client -o yaml"
 ```
 Example:
-> ***k run nginx --image=nginx $save > nginx.yaml*** will generate nginx.yaml with pod configuration
+> ***kubectl run nginx --image=nginx $save > nginx.yaml*** will generate nginx.yaml with pod configuration
 
 
 ## Imperative commands
 
 **create a namespace**
 ```sh
-k create ns dev-ns
+kubectl create ns dev-ns
 ```
 
 **Create a pod label tier=webapp**
 ```sh
-k run nginx --image=nginx:alpine -l tier=webapp
+kubectl run nginx --image=nginx:alpine -l tier=webapp
 ```
 
 **Create a pod with advance settings**
 ```sh
-k run busybox --image=busybox --limits "cpu=200m,memory=512Mi" --requests "cpu=100m,memory=256Mi" --command -- sh -c "sleep 3600" -o yaml --dry-run=client
+kubectl run busybox --image=busybox --limits "cpu=200m,memory=512Mi" --requests "cpu=100m,memory=256Mi" --command -- sh -c "sleep 3600" -o yaml --dry-run=client
 ```
 **Update pod/container configuration/property**
 ```sh
-k get pod busybox -o yaml > busybox.yaml
+kubectl get pod busybox -o yaml > busybox.yaml
 ```
 
 > Update/correct a container image, activeDeadlineSeconds or pod tolerations in running pod can be performed inline with **kubectl edit pod** command.
 ```sh
-k edit pod <podname>
+kubectl edit pod <podname>
 ```
 
 **Create a deployment**
 
 ```sh
-k create deployment redis --image=redis --replicas=2
+kubectl create deployment redis-deployment --image=redis --replicas=2
 ```
 
-**create deployment and scale to 2**
+**Scale deployment to 5 replicas**
 ```sh
-kubectl create deployment redis --image=redis
-kubectl scale deployment/redis --replicas=2
+kubectl scale deployment/redis-deployment --replicas=5
 ```
 
-> With Deployments you can easily edit any field/property of the POD template. Since the pod template is a child of the deployment specification,  with every change the deployment will automatically delete and create a new pod with the new changes. So if you want to edit a property of a POD part of a deployment you may do that simply by running the command
+**Update container image in deployment**
+
 ```sh
-k edit deployment <deploymentname>
+kubectl set image deployment.v1.app/redis-deployment redis=redis:alpine
+```
+
+**Update container resources in deployment**
+```sh
+kubectl set resources deployment.v1.apps/redis-deployment -c=redis --limits=cpu=200m,memory=512Mi
+```
+
+> Or if you prefer declarative way, you can easily edit any field/property of the POD template. Since the pod template is a child of the deployment specification,  with every change the deployment will automatically delete and create a new pod with the new changes. So if you want to edit a property of a POD part of a deployment you may do that simply by running the command
+```sh
+kubectl edit deployment <deploymentname>
 ```
 
 **Create configMap**
