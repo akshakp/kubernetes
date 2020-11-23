@@ -21,6 +21,32 @@ Example:
 > ***kubectl run nginx --image=nginx $save > nginx.yaml*** will generate nginx.yaml with pod configuration
 
 
+## Short names for api resources
+You would thank yourself for mastering the short names of resources:
+
+|Resource Name              |short name      	|
+|---------------------------|-------------------|
+|namespaces        			|`ns`				|
+|Pods			  			|`po`				|
+|deployments       			|`deploy`			|
+|services		  			|`svc`				|
+|configmaps		  			|`cm`				|
+|cronjobs					|`cj`				|
+|nodes			  			|`no`				|
+|persistentvolumes 			|`pv`				|
+|persistentvolumeclaims		|`pvc`				|
+|replicasets				|`rs`				|
+|ingresses					|`ing`            	|
+|networkpolicies			|`netpol`			|
+|daemonsets					|`ds`				|
+|endpoints					|`ep`				|
+|replicasetcontrollers		|`rs`				|
+|serviceaccounts   			|`sa`				|
+|storageclasses				|`sc`				| 
+
+ > ***`kubectl api-resources`*** will provide the up-to date list of api resources short names  
+
+
 ## Imperative commands
 
 **create a namespace**
